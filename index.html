@@ -43,7 +43,6 @@
       overflow-x: hidden;
     }
 
-    /* Noise texture overlay */
     body::before {
       content: '';
       position: fixed;
@@ -57,7 +56,6 @@
       z-index: 1000;
     }
 
-    /* Grid background */
     .grid-bg {
       position: fixed;
       top: 0;
@@ -72,7 +70,6 @@
       z-index: -1;
     }
 
-    /* Glow orbs */
     .glow-orb {
       position: fixed;
       border-radius: 50%;
@@ -98,7 +95,6 @@
       left: -100px;
     }
 
-    /* Header */
     header {
       position: fixed;
       top: 0;
@@ -158,7 +154,6 @@
       width: 100%;
     }
 
-    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -206,7 +201,7 @@
     .hero-desc {
       font-size: 20px;
       color: var(--text-secondary);
-      max-width: 600px;
+      max-width: 650px;
       margin-bottom: 48px;
       line-height: 1.8;
     }
@@ -252,7 +247,6 @@
       background: var(--bg-secondary);
     }
 
-    /* Section */
     section {
       padding: 120px 40px;
       max-width: 1400px;
@@ -278,7 +272,6 @@
       letter-spacing: -2px;
     }
 
-    /* Projects Grid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -304,13 +297,6 @@
       height: 220px;
       position: relative;
       overflow: hidden;
-    }
-
-    .project-preview::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
     }
 
     .project-card:nth-child(1) .project-preview { background: var(--gradient-1); }
@@ -391,12 +377,11 @@
       height: 16px;
     }
 
-    /* About */
     .about-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: center;
+      align-items: start;
     }
 
     .about-text p {
@@ -406,8 +391,13 @@
       line-height: 1.8;
     }
 
-    .about-text p:last-of-type {
-      margin-bottom: 0;
+    .about-text a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .about-text a:hover {
+      text-decoration: underline;
     }
 
     .skills-grid {
@@ -443,7 +433,42 @@
       letter-spacing: 1px;
     }
 
-    /* Contact */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .approach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .approach-card:hover {
+      border-color: var(--text-muted);
+      transform: translateY(-4px);
+    }
+
+    .approach-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .approach-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .approach-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
     .contact-content {
       text-align: center;
       max-width: 600px;
@@ -488,7 +513,6 @@
       height: 20px;
     }
 
-    /* Footer */
     footer {
       padding: 40px;
       text-align: center;
@@ -501,7 +525,6 @@
       color: var(--text-muted);
     }
 
-    /* Animations */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -518,43 +541,19 @@
     .hero-desc { animation: fadeInUp 0.8s ease 0.3s both; }
     .hero-cta { animation: fadeInUp 0.8s ease 0.4s both; }
 
-    /* Responsive */
     @media (max-width: 900px) {
-      header {
-        padding: 16px 24px;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero, section {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      header { padding: 16px 24px; }
+      nav { display: none; }
+      .hero, section { padding-left: 24px; padding-right: 24px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .about-content { grid-template-columns: 1fr; gap: 48px; }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .approach-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 500px) {
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .project-preview {
-        height: 160px;
-      }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-preview { height: 160px; }
     }
   </style>
 </head>
@@ -567,6 +566,7 @@
     <div class="logo">JOSH<span>.</span>DEV</div>
     <nav>
       <a href="#projects">Projects</a>
+      <a href="#approach">Approach</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -574,8 +574,8 @@
 
   <section class="hero">
     <div class="hero-tag">Full-Stack Developer</div>
-    <h1>Building software<br>for <span class="highlight">real businesses</span></h1>
-    <p class="hero-desc">I create practical, utility-first solutions for traditional businesses—mechanics, laundromats, restaurants. No fluff, just tools that work.</p>
+    <h1>Quality tech for<br><span class="highlight">great businesses</span></h1>
+    <p class="hero-desc">I build custom software for businesses that do real work—mechanics, laundromats, restaurants, car dealerships. Practical tools, explained in plain English, built to last.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects</a>
       <a href="#contact" class="btn btn-secondary">Get in Touch</a>
@@ -603,11 +603,11 @@
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/atrakk-demo/" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
             <a href="https://github.com/josdic1/atrakk-demo" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
           </div>
@@ -628,11 +628,11 @@
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/cheatsheet_mvp/" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
             <a href="https://github.com/josdic1/cheatsheet_mvp" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
           </div>
@@ -653,11 +653,11 @@
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/appliance-demo/" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
             <a href="https://github.com/josdic1/appliance-demo" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
           </div>
@@ -678,11 +678,11 @@
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/bookafella-demo/" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
             <a href="https://github.com/josdic1/bookafella-demo" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
           </div>
@@ -703,15 +703,42 @@
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/suddsy-demo/" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Live Demo
             </a>
             <a href="https://github.com/josdic1/suddsy-demo" target="_blank" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="section-header">
+      <div class="section-tag">How I Work</div>
+      <h2 class="section-title">My Approach</h2>
+    </div>
+
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-icon">🤝</div>
+        <h3 class="approach-title">Partner, Not Vendor</h3>
+        <p class="approach-desc">I work alongside you to understand your business. No jargon, no upselling—just honest conversations about what you actually need.</p>
+      </div>
+
+      <div class="approach-card">
+        <div class="approach-icon">🔧</div>
+        <h3 class="approach-title">Built to Last</h3>
+        <p class="approach-desc">Simple, reliable software like a WW2 Jeep. Easy to understand, easy to maintain, built to solve real problems without unnecessary complexity.</p>
+      </div>
+
+      <div class="approach-card">
+        <div class="approach-icon">💬</div>
+        <h3 class="approach-title">Plain English</h3>
+        <p class="approach-desc">I explain everything in terms that make sense. You'll understand what we're building, why, and how it works. No tech gatekeeping.</p>
       </div>
     </div>
   </section>
@@ -724,9 +751,9 @@
 
     <div class="about-content">
       <div class="about-text">
-        <p>I'm a full-stack developer fresh out of coding bootcamp with a focus on building practical software for traditional "unsexy" businesses—the mechanics, laundromats, and car washes that keep the world running.</p>
-        <p>My philosophy is simple: software should be like a WW2 Jeep—reliable, maintainable, and built to solve real problems. No unnecessary complexity, no magic abstractions. Just clean code that works.</p>
-        <p>When I'm not coding, I'm working on music projects under the name Demberry, creating children's music as Dude & The Kids, and constantly generating new ideas.</p>
+        <p>I'm a full-stack developer who builds custom software for traditional businesses—the kind that keep the world running but often get overlooked by tech. My goal is to make quality technology accessible to business owners who shouldn't need a CS degree to get good tools.</p>
+        <p>Outside of code, I'm a ghostwriter for pop and EDM artists under <a href="https://open.spotify.com/artist/3x6K65pMW3Ei35TXKC03rL?si=7d1YuGJORj-4ZT90qD1vUQ" target="_blank">Dare County</a>. I also run <a href="https://www.youtube.com/@BeautifulsDream" target="_blank">Beautiful's Dream</a>, a YouTube channel making wholesome, slightly-edgy educational content for kids.</p>
+        <p>I believe good software should be like a good mechanic: reliable, honest, and doesn't make you feel stupid for asking questions.</p>
       </div>
 
       <div class="skills-grid">
@@ -765,18 +792,18 @@
     </div>
 
     <div class="contact-content">
-      <p>Looking to build something practical for your business? I'd love to hear about it.</p>
+      <p>Got a business that needs better tools? Let's talk about what would actually help.</p>
       <div class="contact-links">
-        <a href="mailto:emailjoshdicker@gmail.com" class="contact-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:josh@demberry.com" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Email
         </a>
         <a href="https://github.com/josdic1" target="_blank" class="contact-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a href="https://linkedin.com/in/joshdicker" target="_blank" class="contact-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="contact-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
       </div>
@@ -784,7 +811,7 @@
   </section>
 
   <footer>
-    <p>© 2026 Josh Dicker. Built with code.</p>
+    <p>© 2026 Josh Dicker. Built with code and coffee.</p>
   </footer>
 </body>
 </html>
