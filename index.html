@@ -29,6 +29,7 @@
       --gradient-3: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
       --gradient-4: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
       --gradient-5: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      --gradient-6: linear-gradient(135deg, #1e3a5f 0%, #4a6fa5 100%);
     }
 
     html {
@@ -299,11 +300,12 @@
       overflow: hidden;
     }
 
-    .project-card:nth-child(1) .project-preview { background: var(--gradient-1); }
-    .project-card:nth-child(2) .project-preview { background: var(--gradient-2); }
-    .project-card:nth-child(3) .project-preview { background: var(--gradient-3); }
-    .project-card:nth-child(4) .project-preview { background: var(--gradient-4); }
-    .project-card:nth-child(5) .project-preview { background: var(--gradient-5); }
+    .project-card:nth-child(1) .project-preview { background: var(--gradient-6); }
+    .project-card:nth-child(2) .project-preview { background: var(--gradient-1); }
+    .project-card:nth-child(3) .project-preview { background: var(--gradient-2); }
+    .project-card:nth-child(4) .project-preview { background: var(--gradient-3); }
+    .project-card:nth-child(5) .project-preview { background: var(--gradient-4); }
+    .project-card:nth-child(6) .project-preview { background: var(--gradient-5); }
 
     .project-icon {
       position: absolute;
@@ -591,6 +593,31 @@
     <div class="projects-grid">
       <div class="project-card">
         <div class="project-preview">
+          <div class="project-icon">🏠</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-name">SlateSnap</h3>
+          <p class="project-desc">Photo documentation app for roofing crews. Track clients, upload site photos, and share damage reports—all from your phone on the job site.</p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Mobile-First</span>
+          </div>
+          <div class="project-links">
+            <a href="https://josdic1.github.io/slater/" target="_blank" class="project-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/josdic1/slater" target="_blank" class="project-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-preview">
           <div class="project-icon">🎵</div>
         </div>
         <div class="project-content">
@@ -794,7 +821,7 @@
     <div class="contact-content">
       <p>Got a business that needs better tools? Let's talk about what would actually help.</p>
       <div class="contact-links">
-        <a href="mailto:emailjoshdicker@gmail.com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#e88d8589818482879b808c818b838d9aa88f85898184c68b8785" class="contact-link">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Email
         </a>
@@ -811,7 +838,4 @@
   </section>
 
   <footer>
-    <p>© 2026 Josh Dicker. Built to last.</p>
-  </footer>
-</body>
-</html>
+    <p>© 2026 Josh Dicker.
