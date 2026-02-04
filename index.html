@@ -25,7 +25,7 @@
       --gradient-4: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
       --gradient-5: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
       --gradient-6: linear-gradient(135deg, #1e3a5f 0%, #4a6fa5 100%);
-      --gradient-7: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --gradient-7: linear-gradient(135deg, #05998b 0%, #00ff88 100%);
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
@@ -83,23 +83,11 @@
     .about-text p { color: var(--text-secondary); font-size: 16px; margin-bottom: 24px; line-height: 1.8; }
     .about-text a { color: var(--accent); text-decoration: none; }
     .about-text a:hover { text-decoration: underline; }
-    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .skill-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
     .skill-item:hover { border-color: var(--accent); transform: scale(1.02); }
     .skill-icon { font-size: 32px; margin-bottom: 8px; }
     .skill-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-    .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .approach-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; transition: all 0.3s; }
-    .approach-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
-    .approach-icon { font-size: 36px; margin-bottom: 16px; }
-    .approach-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
-    .approach-desc { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
-    .contact-content { text-align: center; max-width: 600px; margin: 0 auto; }
-    .contact-content p { color: var(--text-secondary); font-size: 18px; margin-bottom: 40px; }
-    .contact-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-    .contact-link { display: flex; align-items: center; gap: 8px; color: var(--text-primary); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 14px; padding: 16px 28px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; transition: all 0.3s; }
-    .contact-link:hover { border-color: var(--accent); background: var(--bg-secondary); }
-    .contact-link svg { width: 20px; height: 20px; }
     footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); }
     footer p { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text-muted); }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -107,8 +95,7 @@
     .hero h1 { animation: fadeInUp 0.8s ease 0.2s both; }
     .hero-desc { animation: fadeInUp 0.8s ease 0.3s both; }
     .hero-cta { animation: fadeInUp 0.8s ease 0.4s both; }
-    @media (max-width: 900px) { header { padding: 16px 24px; } nav { display: none; } .hero, section { padding-left: 24px; padding-right: 24px; } .projects-grid { grid-template-columns: 1fr; } .about-content { grid-template-columns: 1fr; gap: 48px; } .skills-grid { grid-template-columns: repeat(3, 1fr); } .approach-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 500px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } .project-preview { height: 160px; } }
+    @media (max-width: 900px) { .projects-grid { grid-template-columns: 1fr; } .about-content { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -120,7 +107,6 @@
     <div class="logo">JOSH<span>.</span>DEV</div>
     <nav>
       <a href="#projects">Projects</a>
-      <a href="#approach">Approach</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -129,7 +115,7 @@
   <section class="hero">
     <div class="hero-tag">Full-Stack Developer</div>
     <h1>Quality tech for<br><span class="highlight">great businesses</span></h1>
-    <p class="hero-desc">I build custom software for businesses that do real work—mechanics, laundromats, restaurants, car dealerships. Practical tools, explained in plain English, built to last.</p>
+    <p class="hero-desc">I build custom software for businesses that do real work. Practical tools, built with Python, FastAPI, and React.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects</a>
       <a href="#contact" class="btn btn-secondary">Get in Touch</a>
@@ -149,11 +135,11 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">SlateSnap</h3>
-          <p class="project-desc">Photo documentation app for roofing crews. Track clients, upload site photos, and share damage reports—all from your phone on the job site.</p>
+          <p class="project-desc">Photo documentation for roofing crews. Track clients and site reports from your phone.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Mobile-First</span>
+            <span class="tech-tag">Mobile</span>
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/slater/" target="_blank" class="project-link">Live Demo</a>
@@ -168,7 +154,7 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">LaundroSpin</h3>
-          <p class="project-desc">Smart laundromat management system with real-time machine tracking, buffer pricing, and overstay penalties.</p>
+          <p class="project-desc">Smart laundromat management with real-time machine tracking and buffer pricing.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Real-time</span>
@@ -187,11 +173,11 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">Inlet</h3>
-          <p class="project-desc">A job search command center for tracking applications, networking touches, and active threads without spreadsheets.</p>
+          <p class="project-desc">Job search command center. Track outreach, activity, and threads without spreadsheets.</p>
           <div class="project-tech">
+            <span class="tech-tag">FastAPI</span>
             <span class="tech-tag">React</span>
-            <span class="tech-tag">Context API</span>
-            <span class="tech-tag">Vite</span>
+            <span class="tech-tag">Pydantic</span>
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/inlet/" target="_blank" class="project-link">Live Demo</a>
@@ -206,7 +192,7 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">aTrakk</h3>
-          <p class="project-desc">Music project tracking system for managing songs, recordings, and production workflows.</p>
+          <p class="project-desc">Music project tracking system for managing recordings and production workflows.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Flask</span>
@@ -225,7 +211,7 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">Auto Dealer Offers</h3>
-          <p class="project-desc">Generate legally-compliant promotional offers for car dealerships. Template-based system for lease and purchase deals.</p>
+          <p class="project-desc">Generate legally-compliant lease and purchase offers for dealerships.</p>
           <div class="project-tech">
             <span class="tech-tag">Vanilla JS</span>
             <span class="tech-tag">Vite</span>
@@ -243,7 +229,7 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">Bookafella</h3>
-          <p class="project-desc">Private dining club reservation system. Manage members, bookings, and room availability.</p>
+          <p class="project-desc">Private dining club reservation system. Manage members and room availability.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Context API</span>
@@ -261,7 +247,7 @@
         </div>
         <div class="project-content">
           <h3 class="project-name">CheatSheet</h3>
-          <p class="project-desc">Personal code snippet manager organized by language and category. Quick reference for common patterns.</p>
+          <p class="project-desc">Personal code snippet manager organized by language and category.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Flask</span>
@@ -271,31 +257,6 @@
             <a href="https://github.com/josdic1/cheatsheet_mvp" target="_blank" class="project-link">GitHub</a>
           </div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="approach">
-    <div class="section-header">
-      <div class="section-tag">How I Work</div>
-      <h2 class="section-title">My Approach</h2>
-    </div>
-    <div class="approach-grid">
-      <div class="approach-card">
-        <div class="approach-icon">🤝</div>
-        <h3 class="approach-title">Partner, Not Vendor</h3>
-        <p class="approach-desc">I work alongside you to understand your business. No jargon, no upselling—just honest conversations about what you actually need.</p>
-      </div>
-      <div class="approach-card">
-        <div class="approach-icon">🔧</div>
-        <h3 class="approach-title">Built to Last</h3>
-        <p class="approach-desc">Simple, reliable software like a WW2 Jeep. Easy to understand, easy to maintain, built to solve real problems.</p>
-      </div>
-      <div class="approach-card">
-        <div class="approach-icon">💬</div>
-        <h3 class="approach-title">Plain English</h3>
-        <p class="approach-desc">I explain everything in terms that make sense. You'll understand what we're building, why, and how it works.</p>
       </div>
     </div>
   </section>
@@ -307,11 +268,13 @@
     </div>
     <div class="about-content">
       <div class="about-text">
-        <p>I'm a full-stack developer who builds custom software for traditional businesses—the kind that keep the world running but often get overlooked by tech.</p>
-        <p>Outside of code, I'm a ghostwriter for pop and EDM artists under <a href="http://spotify.com" target="_blank">Dare County</a>. I also run <a href="https://www.youtube.com/@BeautifulsDream" target="_blank">Beautiful's Dream</a>, a YouTube channel making wholesome educational content for kids.</p>
-        <p>I believe good software should be like a good mechanic: reliable, honest, and doesn't make you feel stupid for asking questions.</p>
+        <p>I'm a full-stack developer who builds custom software for traditional businesses. I focus on reliable tech that solves real problems.</p>
+        <p>Outside of code, I'm a ghostwriter for pop/EDM artists and run the <a href="https://www.youtube.com/@BeautifulsDream" target="_blank">Beautiful's Dream</a> kids educational channel.</p>
       </div>
       <div class="skills-grid">
+        <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">FastAPI</div></div>
+        <div class="skill-item"><div class="skill-icon">🏗️</div><div class="skill-name">Pydantic</div></div>
+        <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">Pylance</div></div>
         <div class="skill-item"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
         <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
         <div class="skill-item"><div class="skill-icon">🌶️</div><div class="skill-name">Flask</div></div>
@@ -323,13 +286,9 @@
   </section>
 
   <section id="contact">
-    <div class="section-header" style="text-align: center;">
-      <div class="section-tag">Get in Touch</div>
-      <h2 class="section-title">Let's Work Together</h2>
-    </div>
     <div class="contact-content">
-      <p>Got a business that needs better tools? Let's talk about what would actually help.</p>
-      <div class="contact-links">
+      <h2 class="section-title">Let's Work Together</h2>
+      <div class="contact-links" style="margin-top: 40px;">
         <a href="mailto:emailjoshdicker@gmail.com" class="contact-link">Email</a>
         <a href="https://github.com/josdic1" target="_blank" class="contact-link">GitHub</a>
         <a href="https://linkedin.com/in/joshdicker" target="_blank" class="contact-link">LinkedIn</a>
