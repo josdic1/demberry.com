@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Styling remains consistent with your previous aesthetic */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --bg-primary: #0a0a0b;
@@ -90,11 +91,6 @@
     .skill-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
     footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); }
     footer p { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text-muted); }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-tag { animation: fadeInUp 0.8s ease 0.1s both; }
-    .hero h1 { animation: fadeInUp 0.8s ease 0.2s both; }
-    .hero-desc { animation: fadeInUp 0.8s ease 0.3s both; }
-    .hero-cta { animation: fadeInUp 0.8s ease 0.4s both; }
     @media (max-width: 900px) { .projects-grid { grid-template-columns: 1fr; } .about-content { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -130,16 +126,14 @@
 
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">🏠</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">🏠</div></div>
         <div class="project-content">
           <h3 class="project-name">SlateSnap</h3>
           <p class="project-desc">Photo documentation for roofing crews. Track clients and site reports from your phone.</p>
           <div class="project-tech">
             <span class="tech-tag">React</span>
             <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Mobile</span>
+            <span class="tech-tag">PostgreSQL</span>
           </div>
           <div class="project-links">
             <a href="https://josdic1.github.io/slater/" target="_blank" class="project-link">Live Demo</a>
@@ -149,9 +143,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">🧺</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">🧺</div></div>
         <div class="project-content">
           <h3 class="project-name">LaundroSpin</h3>
           <p class="project-desc">Smart laundromat management with real-time machine tracking and buffer pricing.</p>
@@ -168,9 +160,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">📥</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">📥</div></div>
         <div class="project-content">
           <h3 class="project-name">Inlet</h3>
           <p class="project-desc">Job search command center. Track outreach, activity, and threads without spreadsheets.</p>
@@ -187,9 +177,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">🎵</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">🎵</div></div>
         <div class="project-content">
           <h3 class="project-name">aTrakk</h3>
           <p class="project-desc">Music project tracking system for managing recordings and production workflows.</p>
@@ -206,9 +194,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">🚗</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">🚗</div></div>
         <div class="project-content">
           <h3 class="project-name">Auto Dealer Offers</h3>
           <p class="project-desc">Generate legally-compliant lease and purchase offers for dealerships.</p>
@@ -224,9 +210,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">🍽️</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">🍽️</div></div>
         <div class="project-content">
           <h3 class="project-name">Bookafella</h3>
           <p class="project-desc">Private dining club reservation system. Manage members and room availability.</p>
@@ -242,9 +226,7 @@
       </div>
 
       <div class="project-card">
-        <div class="project-preview">
-          <div class="project-icon">📝</div>
-        </div>
+        <div class="project-preview"><div class="project-icon">📝</div></div>
         <div class="project-content">
           <h3 class="project-name">CheatSheet</h3>
           <p class="project-desc">Personal code snippet manager organized by language and category.</p>
@@ -261,35 +243,33 @@
     </div>
   </section>
 
-
-<section id="about">
-  <div class="section-header">
-    <div class="section-tag">Background</div>
-    <h2 class="section-title">About Me</h2>
-  </div>
-  <div class="about-content">
-    <div class="about-text">
-      <p>I'm a full-stack developer who builds custom software for traditional businesses—the kind that keep the world running but often get overlooked by tech. I specialize in building robust backends using <strong>FastAPI</strong>, <strong>Flask</strong>, and <strong>SQLAlchemy</strong>, paired with reactive <strong>React</strong> frontends.</p>
-      
-      <p>Outside of code, I'm a ghostwriter for pop and EDM artists under <a href="http://spotify.com" target="_blank">Dare County</a>. I also run <a href="https://www.youtube.com/@BeautifulsDream" target="_blank">Beautiful's Dream</a>, a YouTube channel making wholesome, slightly-edgy educational content for kids.</p>
-      
-      <p>I believe good software should be like a good mechanic: reliable, honest, and doesn't make you feel stupid for asking questions.</p>
+  <section id="about">
+    <div class="section-header">
+      <div class="section-tag">Background</div>
+      <h2 class="section-title">About Me</h2>
     </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>I'm a full-stack developer who builds custom software for traditional businesses—the kind that keep the world running but often get overlooked by tech. I specialize in building robust backends using <strong>FastAPI</strong>, <strong>Flask</strong>, and <strong>SQLAlchemy</strong>, paired with reactive <strong>React</strong> frontends.</p>
+        
+        <p>Outside of code, I'm a ghostwriter for pop and EDM artists under <a href="http://spotify.com" target="_blank">Dare County</a>. I also run <a href="https://www.youtube.com/@BeautifulsDream" target="_blank">Beautiful's Dream</a>, a YouTube channel making wholesome, educational content for kids.</p>
+        
+        <p>I believe good software should be like a good mechanic: reliable, honest, and doesn't make you feel stupid for asking questions.</p>
+      </div>
 
-    <div class="skills-grid">
-      <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">FastAPI</div></div>
-      <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Pydantic</div></div>
-      <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">Pylance</div></div>
-      <div class="skill-item"><div class="skill-icon">🗄️</div><div class="skill-name">SQLAlchemy</div></div>
-      <div class="skill-item"><div class="skill-icon">🍬</div><div class="skill-name">Marshmallow</div></div>
-      <div class="skill-item"><div class="skill-icon">🌶️</div><div class="skill-name">Flask</div></div>
-
-      <div class="skill-item"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
-      <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
-      <div class="skill-item"><div class="skill-icon">📜</div><div class="skill-name">JavaScript</div></div>
+      <div class="skills-grid">
+        <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">FastAPI</div></div>
+        <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Pydantic</div></div>
+        <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">Pylance</div></div>
+        <div class="skill-item"><div class="skill-icon">🗄️</div><div class="skill-name">SQLAlchemy</div></div>
+        <div class="skill-item"><div class="skill-icon">🍬</div><div class="skill-name">Marshmallow</div></div>
+        <div class="skill-item"><div class="skill-icon">🐘</div><div class="skill-name">PostgreSQL</div></div>
+        <div class="skill-item"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
+        <div class="skill-item"><div class="skill-icon">🚀</div><div class="skill-name">Vite</div></div>
+        <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">Alembic</div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section id="contact">
     <div class="contact-content">
