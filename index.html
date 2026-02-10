@@ -2,15 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Josh Dicker | Full-Stack Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
@@ -76,7 +72,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
           linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         background-size: 60px 60px;
         pointer-events: none;
@@ -312,31 +309,25 @@
         overflow: hidden;
       }
 
+      /* 7 project cards: 1..7 */
       .project-card:nth-child(1) .project-preview {
         background: var(--gradient-6);
       }
-
       .project-card:nth-child(2) .project-preview {
         background: var(--gradient-1);
       }
-
       .project-card:nth-child(3) .project-preview {
         background: var(--gradient-2);
       }
-
       .project-card:nth-child(4) .project-preview {
         background: var(--gradient-3);
       }
-
       .project-card:nth-child(5) .project-preview {
         background: var(--gradient-4);
       }
-
       .project-card:nth-child(6) .project-preview {
         background: var(--gradient-5);
       }
-
-      /* Added: 7th card gradient for Bagger */
       .project-card:nth-child(7) .project-preview {
         background: var(--gradient-6);
       }
@@ -575,15 +566,12 @@
       .hero-tag {
         animation: fadeInUp 0.8s ease 0.1s both;
       }
-
       .hero h1 {
         animation: fadeInUp 0.8s ease 0.2s both;
       }
-
       .hero-desc {
         animation: fadeInUp 0.8s ease 0.3s both;
       }
-
       .hero-cta {
         animation: fadeInUp 0.8s ease 0.4s both;
       }
@@ -592,30 +580,24 @@
         header {
           padding: 16px 24px;
         }
-
         nav {
           display: none;
         }
-
         .hero,
         section {
           padding-left: 24px;
           padding-right: 24px;
         }
-
         .projects-grid {
           grid-template-columns: 1fr;
         }
-
         .about-content {
           grid-template-columns: 1fr;
           gap: 48px;
         }
-
         .skills-grid {
           grid-template-columns: repeat(3, 1fr);
         }
-
         .approach-grid {
           grid-template-columns: 1fr;
         }
@@ -625,7 +607,6 @@
         .skills-grid {
           grid-template-columns: repeat(2, 1fr);
         }
-
         .project-preview {
           height: 160px;
         }
@@ -635,14 +616,11 @@
 
   <body>
     <div class="grid-bg"></div>
-
     <div class="glow-orb orb-1"></div>
-
     <div class="glow-orb orb-2"></div>
 
     <header>
       <div class="logo">JOSH<span>.</span>DEV</div>
-
       <nav>
         <a href="#projects">Projects</a>
         <a href="#approach">Approach</a>
@@ -681,22 +659,18 @@
           <div class="project-preview">
             <div class="project-icon">🏠</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">SlateSnap</h3>
-
             <p class="project-desc">
               Photo documentation app for roofing crews. Track clients, upload
               site photos, and share damage reports—all from your phone on the
               job site.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">Flask</span>
               <span class="tech-tag">Mobile-First</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/slater/"
@@ -711,7 +685,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/slater"
                 target="_blank"
@@ -731,21 +704,17 @@
           <div class="project-preview">
             <div class="project-icon">🎵</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">aTrakk</h3>
-
             <p class="project-desc">
               Music project tracking system for managing songs, recordings, and
               production workflows.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">Flask</span>
               <span class="tech-tag">SQLAlchemy</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/atrakk-demo/"
@@ -760,7 +729,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/atrakk-demo"
                 target="_blank"
@@ -780,22 +748,18 @@
           <div class="project-preview">
             <div class="project-icon">📥</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">Inlet</h3>
-
             <p class="project-desc">
               Job search command center for tracking high-touch outreach.
               Replace spreadsheets with a focused activity feed and automated
               thread prioritization.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">FastAPI</span>
               <span class="tech-tag">Pydantic</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/inlet/"
@@ -810,7 +774,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/inlet"
                 target="_blank"
@@ -826,27 +789,23 @@
           </div>
         </div>
 
-        <!-- Replaced: CheatSheet card -> Bagger -->
+        <!-- Updated: CheatSheet -> Bagger -->
         <div class="project-card">
           <div class="project-preview">
             <div class="project-icon">👜</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">Bagger</h3>
-
             <p class="project-desc">
               Full-stack app for organizing and prioritizing job applications
               and outreach in one place—less spreadsheet chaos, more next
               actions.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">API</span>
               <span class="tech-tag">Netlify</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://bagger-frontend.netlify.app/"
@@ -861,7 +820,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/bagger-backend"
                 target="_blank"
@@ -881,21 +839,17 @@
           <div class="project-preview">
             <div class="project-icon">🚗</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">Auto Dealer Offers</h3>
-
             <p class="project-desc">
               Generate legally-compliant promotional offers for car dealerships.
               Template-based system for lease and purchase deals.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">Vanilla JS</span>
               <span class="tech-tag">Vite</span>
               <span class="tech-tag">JSON</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/appliance-demo/"
@@ -910,7 +864,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/appliance-demo"
                 target="_blank"
@@ -930,21 +883,17 @@
           <div class="project-preview">
             <div class="project-icon">🍽️</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">Bookafella</h3>
-
             <p class="project-desc">
               Private dining club reservation system. Manage members, bookings,
               and room availability.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">React Router</span>
               <span class="tech-tag">Context API</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/bookafella-demo/"
@@ -959,7 +908,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/bookafella-demo"
                 target="_blank"
@@ -979,21 +927,17 @@
           <div class="project-preview">
             <div class="project-icon">🧺</div>
           </div>
-
           <div class="project-content">
             <h3 class="project-name">LaundroSpin</h3>
-
             <p class="project-desc">
               Smart laundromat management system with real-time machine
               tracking, buffer pricing, and overstay penalties.
             </p>
-
             <div class="project-tech">
               <span class="tech-tag">React</span>
               <span class="tech-tag">Real-time</span>
               <span class="tech-tag">State Machine</span>
             </div>
-
             <div class="project-links">
               <a
                 href="https://josdic1.github.io/suddsy-demo/"
@@ -1008,7 +952,6 @@
                 </svg>
                 Live Demo
               </a>
-
               <a
                 href="https://github.com/josdic1/suddsy-demo"
                 target="_blank"
@@ -1087,7 +1030,10 @@
               rel="noopener noreferrer"
               >Dare County</a
             >. I also run
-            <a href="https://www.youtube.com/@BeautifulsDream" target="_blank" rel="noopener noreferrer"
+            <a
+              href="https://www.youtube.com/@BeautifulsDream"
+              target="_blank"
+              rel="noopener noreferrer"
               >Beautiful's Dream</a
             >, a YouTube channel making wholesome, slightly-edgy educational
             content for kids.
@@ -1100,55 +1046,18 @@
         </div>
 
         <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-icon">⚡</div>
-            <div class="skill-name">FastAPI</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🛡️</div>
-            <div class="skill-name">Pydantic</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🗄️</div>
-            <div class="skill-name">SQLAlchemy</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🍬</div>
-            <div class="skill-name">Marshmallow</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🐘</div>
-            <div class="skill-name">PostgreSQL</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">⚙️</div>
-            <div class="skill-name">Alembic</div>
-          </div>
-
-          <div class="skill-item">
-            <div class="skill-icon">⚛️</div>
-            <div class="skill-name">React</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🚀</div>
-            <div class="skill-name">Vite</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🐍</div>
-            <div class="skill-name">Python</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🌶️</div>
-            <div class="skill-name">Flask</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">📜</div>
-            <div class="skill-name">JavaScript</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon">🔍</div>
-            <div class="skill-name">Pylance</div>
-          </div>
+          <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">FastAPI</div></div>
+          <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Pydantic</div></div>
+          <div class="skill-item"><div class="skill-icon">🗄️</div><div class="skill-name">SQLAlchemy</div></div>
+          <div class="skill-item"><div class="skill-icon">🍬</div><div class="skill-name">Marshmallow</div></div>
+          <div class="skill-item"><div class="skill-icon">🐘</div><div class="skill-name">PostgreSQL</div></div>
+          <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">Alembic</div></div>
+          <div class="skill-item"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
+          <div class="skill-item"><div class="skill-icon">🚀</div><div class="skill-name">Vite</div></div>
+          <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
+          <div class="skill-item"><div class="skill-icon">🌶️</div><div class="skill-name">Flask</div></div>
+          <div class="skill-item"><div class="skill-icon">📜</div><div class="skill-name">JavaScript</div></div>
+          <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">Pylance</div></div>
         </div>
       </div>
     </section>
@@ -1177,14 +1086,24 @@
             Email
           </a>
 
-          <a href="https://github.com/josdic1" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <a
+            href="https://github.com/josdic1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
             </svg>
             GitHub
           </a>
 
-          <a href="https://linkedin.com/in/joshdicker" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <a
+            href="https://linkedin.com/in/joshdicker"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
