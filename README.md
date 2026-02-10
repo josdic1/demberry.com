@@ -20,8 +20,8 @@ Portfolio showcasing custom software built for traditional businesses—mechanic
 - **Bookafella** - Private club reservation system
 - **LaundroSpin** - Smart laundromat management
 
-## Tech Stack
-
+## Full-Stack Engineer
+My portfolio page was built with:
 - HTML
 - CSS
 - Vanilla JavaScript
