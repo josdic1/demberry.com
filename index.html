@@ -3,1129 +3,658 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Josh Dicker | Full-Stack Developer</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-
+    <title>Portfolio | Josh Dicker</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+      :root {
+        --bg-color: #fdfdfc;
+        --text-main: #000000;
+        --border-heavy: 4px solid #000000;
+        --shadow-hard: 6px 6px 0px #000000;
+        --shadow-hover: 2px 2px 0px #000000;
+        --accent-primary: #00ffcc; /* Clean, high-contrast cyan */
+        --accent-secondary: #ff007f; /* Stark magenta for details */
+        --card-bg: #ffffff;
+      }
+
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --bg-primary: #0a0a0b;
-        --bg-secondary: #111113;
-        --bg-card: #161619;
-
-        --text-primary: #fafafa;
-        --text-secondary: #888;
-        --text-muted: #555;
-
-        --accent: #00ff88;
-        --accent-dim: #00ff8833;
-
-        --border: #222;
-
-        --gradient-1: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
-        --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
-        --gradient-3: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-        --gradient-4: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-        --gradient-5: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-        --gradient-6: linear-gradient(135deg, #1e3a5f 0%, #4a6fa5 100%);
-      }
-
-      html {
-        scroll-behavior: smooth;
       }
 
       body {
-        font-family: "Outfit", sans-serif;
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.6;
-        overflow-x: hidden;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.5;
+        padding: 4rem 2rem;
+        max-width: 900px;
+        margin: 0 auto;
       }
 
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        opacity: 0.03;
-        pointer-events: none;
-        z-index: 1000;
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: -0.05em;
       }
 
-      .grid-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        background-size: 60px 60px;
-        pointer-events: none;
-        z-index: -1;
+      h1 {
+        font-size: 4rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+        background: var(--accent-primary);
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        border: var(--border-heavy);
+        box-shadow: var(--shadow-hard);
       }
 
-      .glow-orb {
-        position: fixed;
-        border-radius: 50%;
-        filter: blur(100px);
-        opacity: 0.15;
-        pointer-events: none;
-        z-index: -1;
+      h2 {
+        font-size: 2.5rem;
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
+        border-bottom: var(--border-heavy);
+        padding-bottom: 0.5rem;
       }
 
-      .orb-1 {
-        width: 600px;
-        height: 600px;
-        background: var(--accent);
-        top: -200px;
-        right: -200px;
-      }
-
-      .orb-2 {
-        width: 400px;
-        height: 400px;
-        background: #3b82f6;
-        bottom: 20%;
-        left: -100px;
-      }
-
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 20px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-        backdrop-filter: blur(20px);
-        background: rgba(10, 10, 11, 0.8);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .logo {
-        font-family: "Space Mono", monospace;
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: -1px;
-      }
-
-      .logo span {
-        color: var(--accent);
-      }
-
-      nav {
-        display: flex;
-        gap: 32px;
-      }
-
-      nav a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 14px;
+      p {
+        font-size: 1.25rem;
         font-weight: 500;
-        transition: color 0.3s;
-        position: relative;
+        margin-bottom: 1.5rem;
       }
 
-      nav a:hover {
-        color: var(--text-primary);
+      /* Layout & Modules */
+      header {
+        margin-bottom: 4rem;
       }
 
-      nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.3s;
+      .subtitle {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
       }
 
-      nav a:hover::after {
-        width: 100%;
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
       }
 
-      .hero {
-        min-height: 100vh;
+      .button-link {
+        display: inline-block;
+        font-size: 1.25rem;
+        font-weight: 800;
+        text-decoration: none;
+        color: var(--text-main);
+        background-color: var(--accent-primary);
+        padding: 0.75rem 1.5rem;
+        border: var(--border-heavy);
+        box-shadow: var(--shadow-hard);
+        text-transform: uppercase;
+        transition: all 0.15s ease-out;
+      }
+
+      .button-link:hover {
+        transform: translate(4px, 4px);
+        box-shadow: var(--shadow-hover);
+        background-color: var(--accent-secondary);
+        color: #ffffff;
+      }
+
+      .button-link.secondary {
+        background-color: #ffffff;
+      }
+
+      .button-link.secondary:hover {
+        background-color: var(--text-main);
+        color: #ffffff;
+      }
+
+      /* Grid */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      /* Cards */
+      .card {
+        background-color: var(--card-bg);
+        border: var(--border-heavy);
+        box-shadow: var(--shadow-hard);
+        padding: 2rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding: 120px 40px 80px;
-        max-width: 1400px;
-        margin: 0 auto;
+        transition: all 0.15s ease-out;
       }
 
-      .hero-tag {
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        color: var(--accent);
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 24px;
+      .card:hover {
+        transform: translate(4px, 4px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .card-header {
         display: flex;
         align-items: center;
-        gap: 12px;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--text-main);
+        padding-bottom: 0.5rem;
       }
 
-      .hero-tag::before {
-        content: "";
-        width: 40px;
-        height: 1px;
-        background: var(--accent);
+      .card h3 {
+        font-size: 1.75rem;
+        margin-bottom: 0;
       }
 
-      .hero h1 {
-        font-size: clamp(48px, 8vw, 100px);
-        font-weight: 700;
-        line-height: 1.05;
-        letter-spacing: -3px;
-        margin-bottom: 32px;
-      }
-
-      .hero h1 .highlight {
-        background: var(--gradient-1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero-desc {
-        font-size: 20px;
-        color: var(--text-secondary);
-        max-width: 650px;
-        margin-bottom: 48px;
-        line-height: 1.8;
-      }
-
-      .hero-cta {
+      .card-icon {
         display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        padding: 16px 32px;
-        border-radius: 8px;
-        font-family: "Space Mono", monospace;
-        font-size: 13px;
-        font-weight: 700;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s;
-        cursor: pointer;
-        border: none;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: var(--bg-primary);
-      }
-
-      .btn-primary:hover {
-        box-shadow: 0 0 30px var(--accent-dim);
-        transform: translateY(-2px);
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: var(--text-primary);
-        border: 1px solid var(--border);
-      }
-
-      .btn-secondary:hover {
-        border-color: var(--text-secondary);
-        background: var(--bg-secondary);
-      }
-
-      section {
-        padding: 120px 40px;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-
-      .section-header {
-        margin-bottom: 64px;
-      }
-
-      .section-tag {
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        color: var(--accent);
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-      }
-
-      .section-title {
-        font-size: clamp(32px, 5vw, 56px);
-        font-weight: 700;
-        letter-spacing: -2px;
-      }
-
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 32px;
-      }
-
-      .project-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        overflow: hidden;
-        transition: all 0.4s;
-        position: relative;
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--text-muted);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      }
-
-      .project-preview {
-        height: 220px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      /* 7 project cards: 1..7 */
-      .project-card:nth-child(1) .project-preview {
-        background: var(--gradient-6);
-      }
-      .project-card:nth-child(2) .project-preview {
-        background: var(--gradient-1);
-      }
-      .project-card:nth-child(3) .project-preview {
-        background: var(--gradient-2);
-      }
-      .project-card:nth-child(4) .project-preview {
-        background: var(--gradient-3);
-      }
-      .project-card:nth-child(5) .project-preview {
-        background: var(--gradient-4);
-      }
-      .project-card:nth-child(6) .project-preview {
-        background: var(--gradient-5);
-      }
-      .project-card:nth-child(7) .project-preview {
-        background: var(--gradient-6);
-      }
-
-      .project-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 64px;
-        z-index: 2;
-        filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
-      }
-
-      .project-content {
-        padding: 28px;
-      }
-
-      .project-name {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        letter-spacing: -0.5px;
-      }
-
-      .project-desc {
-        color: var(--text-secondary);
-        font-size: 14px;
-        margin-bottom: 20px;
-        line-height: 1.7;
-      }
-
-      .project-tech {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 24px;
-      }
-
-      .tech-tag {
-        font-family: "Space Mono", monospace;
-        font-size: 10px;
-        padding: 6px 12px;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
+        align-items: center;
+        justify-content: center;
+        background-color: var(--accent-primary);
+        border: 2px solid var(--text-main);
+        box-shadow: 2px 2px 0px var(--text-main);
+        padding: 0.5rem;
         border-radius: 4px;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 1px;
       }
 
-      .project-links {
-        display: flex;
-        gap: 12px;
-      }
-
-      .project-link {
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        color: var(--accent);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        transition: opacity 0.3s;
-      }
-
-      .project-link:hover {
-        opacity: 0.7;
-      }
-
-      .project-link svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: start;
-      }
-
-      .about-text p {
-        color: var(--text-secondary);
-        font-size: 16px;
-        margin-bottom: 24px;
-        line-height: 1.8;
-      }
-
-      .about-text a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      .about-text a:hover {
-        text-decoration: underline;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .skill-item {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.3s;
-      }
-
-      .skill-item:hover {
-        border-color: var(--accent);
-        transform: scale(1.02);
-      }
-
-      .skill-icon {
-        font-size: 32px;
-        margin-bottom: 8px;
-      }
-
-      .skill-name {
-        font-family: "Space Mono", monospace;
-        font-size: 11px;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .approach-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-
-      .approach-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 32px;
-        transition: all 0.3s;
-      }
-
-      .approach-card:hover {
-        border-color: var(--text-muted);
-        transform: translateY(-4px);
-      }
-
-      .approach-icon {
-        font-size: 36px;
-        margin-bottom: 16px;
-      }
-
-      .approach-title {
-        font-size: 18px;
+      .card p.description {
+        font-size: 1.1rem;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
       }
 
-      .approach-desc {
-        color: var(--text-secondary);
-        font-size: 14px;
-        line-height: 1.7;
-      }
-
-      .contact-content {
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .contact-content p {
-        color: var(--text-secondary);
-        font-size: 18px;
-        margin-bottom: 40px;
-      }
-
-      .contact-links {
+      .card-footer {
+        margin-top: auto;
         display: flex;
-        justify-content: center;
-        gap: 24px;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      /* Card Tags for Tech Stack */
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .card-tag {
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 0.25rem 0.5rem;
+        border: 2px solid #000000;
+        box-shadow: 2px 2px 0px #000000;
+      }
+
+      /* Project Action Links */
+      .card-links {
+        display: flex;
+        gap: 1rem;
         flex-wrap: wrap;
       }
 
-      .contact-link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--text-primary);
+      .card-action {
+        font-size: 0.85rem;
+        font-weight: 800;
         text-decoration: none;
-        font-family: "Space Mono", monospace;
-        font-size: 14px;
-        padding: 16px 28px;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        transition: all 0.3s;
+        color: var(--text-main);
+        border: 2px solid var(--text-main);
+        padding: 0.4rem 0.75rem;
+        text-transform: uppercase;
+        box-shadow: 2px 2px 0px var(--text-main);
+        background-color: #ffffff;
+        transition: all 0.15s ease-out;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
       }
 
-      .contact-link:hover {
-        border-color: var(--accent);
-        background: var(--bg-secondary);
+      .card-action:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 0px 0px 0px var(--text-main);
+        background-color: var(--accent-primary);
       }
 
-      .contact-link svg {
-        width: 20px;
-        height: 20px;
+      .card-action.try-it {
+        background-color: var(--accent-secondary);
+        color: #ffffff;
       }
 
-      footer {
-        padding: 40px;
-        text-align: center;
-        border-top: 1px solid var(--border);
+      .card-action.try-it:hover {
+        background-color: var(--text-main);
+        color: #ffffff;
       }
 
-      footer p {
-        font-family: "Space Mono", monospace;
-        font-size: 12px;
-        color: var(--text-muted);
+      /* Skills Layout */
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+      .skill-group h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        background-color: var(--text-main);
+        color: #ffffff;
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+      }
+
+      ul.tech-stack {
+        list-style: none;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      ul.tech-stack li {
+        font-weight: 800;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        border: 3px solid var(--text-main);
+        padding: 0.4rem 0.75rem;
+        box-shadow: 3px 3px 0px var(--text-main);
+        background-color: #ffffff;
+        transition: transform 0.1s ease;
+      }
+
+      ul.tech-stack li:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px var(--text-main);
+        background-color: var(--accent-primary);
+      }
+
+      /* Contact Links */
+      ul.contact-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      ul.contact-links li a {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-main);
+        text-decoration: none;
+        border-bottom: 4px solid var(--accent-primary);
+        transition: all 0.2s ease;
+      }
+
+      ul.contact-links li a:hover {
+        background-color: var(--accent-primary);
+      }
+
+      /* Mobile Adjustments */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2.5rem;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        h2 {
+          font-size: 2rem;
         }
-      }
-
-      .hero-tag {
-        animation: fadeInUp 0.8s ease 0.1s both;
-      }
-      .hero h1 {
-        animation: fadeInUp 0.8s ease 0.2s both;
-      }
-      .hero-desc {
-        animation: fadeInUp 0.8s ease 0.3s both;
-      }
-      .hero-cta {
-        animation: fadeInUp 0.8s ease 0.4s both;
-      }
-
-      @media (max-width: 900px) {
-        header {
-          padding: 16px 24px;
-        }
-        nav {
-          display: none;
-        }
-        .hero,
-        section {
-          padding-left: 24px;
-          padding-right: 24px;
-        }
-        .projects-grid {
+        .grid {
           grid-template-columns: 1fr;
-        }
-        .about-content {
-          grid-template-columns: 1fr;
-          gap: 48px;
-        }
-        .skills-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .approach-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 500px) {
-        .skills-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .project-preview {
-          height: 160px;
         }
       }
     </style>
   </head>
-
   <body>
-    <div class="grid-bg"></div>
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-
     <header>
-      <div class="logo">JOSH<span>.</span>DEV</div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#approach">Approach</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <h1>JOSH DICKER</h1>
+      <div class="subtitle">
+        Full-stack developer building practical software for real-world
+        businesses.
+      </div>
+      <div class="header-actions">
+        <a href="#projects" class="button-link">Live Projects ↓</a>
+        <a href="#contact" class="button-link secondary">Get In Touch →</a>
+      </div>
     </header>
 
-    <section class="hero">
-      <div class="hero-tag">Full-Stack Developer</div>
-
-      <h1>
-        Quality tech for<br /><span class="highlight">great businesses</span>
-      </h1>
-
-      <p class="hero-desc">
-        I build custom software for businesses that do real work—mechanics,
-        laundromats, restaurants, car dealerships. Practical tools, explained in
-        plain English, built to last.
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Based in South Orange, NJ, I build custom, bulletproof software for
+        traditional businesses underserved by the SaaS industry: Dry cleaners,
+        roofing crews, laundromats, and private clubs. No bloat, just tools
+        built to work and built to last.
       </p>
-
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-      </div>
     </section>
 
     <section id="projects">
-      <div class="section-header">
-        <div class="section-tag">Selected Work</div>
-        <h2 class="section-title">Projects</h2>
-      </div>
-
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">🏠</div>
+      <h2>Live Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-header">
+            <h3>Anchor Lake</h3>
+            <div class="card-icon"><i data-lucide="concierge-bell"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">SlateSnap</h3>
-            <p class="project-desc">
-              Photo documentation app for roofing crews. Track clients, upload
-              site photos, and share damage reports—all from your phone on the
-              job site.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">Flask</span>
-              <span class="tech-tag">Mobile-First</span>
+          <p class="description">
+            Full-stack, role-based reservation and point-of-sale platform for
+            private clubs. Features complex meal window logic, real-time kitchen
+            execution boards, seating floor management, automated dietary flag
+            tracking, and PDF report generation.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React 19</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">FastAPI</span>
+              <span class="card-tag">Python</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">Pydantic</span>
+              <span class="card-tag">Vite</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
-                href="https://josdic1.github.io/slater/"
+                href="https://anchor-lake.netlify.app/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/slater"
+                href="https://github.com/josdic1/anchor-lake"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">🎵</div>
+        <div class="card">
+          <div class="card-header">
+            <h3>BarQueue</h3>
+            <div class="card-icon"><i data-lucide="beer"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">aTrakk</h3>
-            <p class="project-desc">
-              Music project tracking system for managing songs, recordings, and
-              production workflows.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">Flask</span>
-              <span class="tech-tag">SQLAlchemy</span>
+          <p class="description">
+            Dive bar point-of-sale and intelligent queue management application
+            for pool and shuffleboard tables.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">Vite</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">SQL</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">Node</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
-                href="https://josdic1.github.io/atrakk-demo/"
+                href="https://liberty-tavern.netlify.app/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/atrakk-demo"
+                href="https://github.com/josdic1/barqueue"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">📥</div>
+        <div class="card">
+          <div class="card-header">
+            <h3>TakeVault</h3>
+            <div class="card-icon"><i data-lucide="archive"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">Inlet</h3>
-            <p class="project-desc">
-              Job search command center for tracking high-touch outreach.
-              Replace spreadsheets with a focused activity feed and automated
-              thread prioritization.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">FastAPI</span>
-              <span class="tech-tag">Pydantic</span>
+          <p class="description">
+            Secure organization, streaming, and sharing platform designed for
+            managing digital creative assets.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">Vite</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">SQL</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">Node</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
-                href="https://josdic1.github.io/inlet/"
+                href="https://joshdicker.netlify.app/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/inlet"
+                href="https://github.com/josdic1/takevault"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
 
-       <!-- Updated: Bagger Project Card -->
-<div class="project-card">
-  <div class="project-preview">
-    <div class="project-icon">👜</div>
-  </div>
-
-  <div class="project-content">
-    <h3 class="project-name">Bagger</h3>
-
-    <p class="project-desc">
-      A full-stack workflow app that helps users organize and manage key
-      information in one place. Built with React, FastAPI, and PostgreSQL,
-      it replaces scattered notes with structured, searchable data through
-      a clean UI powered by a robust API layer.
-    </p>
-
-    <div class="project-tech">
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">FastAPI</span>
-      <span class="tech-tag">PostgreSQL</span>
-      <span class="tech-tag">Python</span>
-      <span class="tech-tag">Pydantic</span>
-    </div>
-
-    <div class="project-links">
-      <a
-        href="https://bagger-frontend.netlify.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-          <polyline points="15 3 21 3 21 9" />
-          <line x1="10" y1="14" x2="21" y2="3" />
-        </svg>
-        Live Demo
-      </a>
-
-      <a
-        href="https://github.com/josdic1/bagger-backend"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="project-link"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-        </svg>
-        Backend Repo
-      </a>
-    </div>
-  </div>
-</div>
-
-
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">🚗</div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Bagger</h3>
+            <div class="card-icon"><i data-lucide="briefcase"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">Auto Dealer Offers</h3>
-            <p class="project-desc">
-              Generate legally-compliant promotional offers for car dealerships.
-              Template-based system for lease and purchase deals.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">Vanilla JS</span>
-              <span class="tech-tag">Vite</span>
-              <span class="tech-tag">JSON</span>
+          <p class="description">
+            Developer-focused code snippet manager utilizing a highly
+            structured, searchable data layer.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">Vite</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">SQL</span>
+              <span class="card-tag">FastAPI</span>
+              <span class="card-tag">Pydantic</span>
+              <span class="card-tag">Python</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
-                href="https://josdic1.github.io/appliance-demo/"
+                href="https://bagger-frontend.netlify.app/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/appliance-demo"
+                href="https://github.com/josdic1/bagger"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">🍽️</div>
+        <div class="card">
+          <div class="card-header">
+            <h3>TipsyGenius</h3>
+            <div class="card-icon"><i data-lucide="brain"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">Bookafella</h3>
-            <p class="project-desc">
-              Private dining club reservation system. Manage members, bookings,
-              and room availability.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">React Router</span>
-              <span class="tech-tag">Context API</span>
+          <p class="description">
+            Live, real-time interactive trivia and pub game platform. Features a
+            host dashboard for game progression, a big-screen public display
+            mode, and mobile team participation via join PINs. Includes
+            automated grading and custom pack builders.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Node.js</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">Real-Time</span>
+              <span class="card-tag">Vite</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
-                href="https://josdic1.github.io/bookafella-demo/"
+                href="https://tipsygenius.netlify.app/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/bookafella-demo"
+                href="https://github.com/josdic1/tipsy-genius"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-preview">
-            <div class="project-icon">🧺</div>
+        <div class="card">
+          <div class="card-header">
+            <h3>LaundroSpin</h3>
+            <div class="card-icon"><i data-lucide="shirt"></i></div>
           </div>
-          <div class="project-content">
-            <h3 class="project-name">LaundroSpin</h3>
-            <p class="project-desc">
-              Smart laundromat management system with real-time machine
-              tracking, buffer pricing, and overstay penalties.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">Real-time</span>
-              <span class="tech-tag">State Machine</span>
+          <p class="description">
+            Smart laundromat management featuring real-time machine tracking,
+            buffer pricing, and overstay penalties.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">State Machine</span>
+              <span class="card-tag">Real-Time</span>
+              <span class="card-tag">React</span>
             </div>
-            <div class="project-links">
+            <div class="card-links">
               <a
                 href="https://josdic1.github.io/suddsy-demo/"
+                class="card-action try-it"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >TRY IT ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Live Demo
-              </a>
               <a
-                href="https://github.com/josdic1/suddsy-demo"
+                href="https://github.com/josdic1/laundrospin"
+                class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project-link"
+                >GitHub ↗</a
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                GitHub
-              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="approach">
-      <div class="section-header">
-        <div class="section-tag">How I Work</div>
-        <h2 class="section-title">My Approach</h2>
-      </div>
-
-      <div class="approach-grid">
-        <div class="approach-card">
-          <div class="approach-icon">🤝</div>
-          <h3 class="approach-title">Partner, Not Vendor</h3>
-          <p class="approach-desc">
-            I work alongside you to understand your business. No jargon, no
-            upselling—just honest conversations about what you actually need.
-          </p>
+    <section>
+      <h2>Knowledge & Technology</h2>
+      <div class="skills-container">
+        <div class="skill-group">
+          <h4>Frontend Core</h4>
+          <ul class="tech-stack">
+            <li>JavaScript (ES6+)</li>
+            <li>TypeScript</li>
+            <li>React 19</li>
+            <li>HTML5 / CSS3</li>
+            <li>Vite</li>
+          </ul>
         </div>
 
-        <div class="approach-card">
-          <div class="approach-icon">🔧</div>
-          <h3 class="approach-title">Built to Last</h3>
-          <p class="approach-desc">
-            Simple, reliable software like a WW2 Jeep. Easy to understand, easy
-            to maintain, built to solve real problems without unnecessary
-            complexity.
-          </p>
+        <div class="skill-group">
+          <h4>Backend & APIs</h4>
+          <ul class="tech-stack">
+            <li>Python</li>
+            <li>Node.js</li>
+            <li>FastAPI</li>
+            <li>Express</li>
+            <li>Flask</li>
+          </ul>
         </div>
 
-        <div class="approach-card">
-          <div class="approach-icon">💬</div>
-          <h3 class="approach-title">Plain English</h3>
-          <p class="approach-desc">
-            I explain everything in terms that make sense. You'll understand
-            what we're building, why, and how it works. No tech gatekeeping.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="section-header">
-        <div class="section-tag">Background</div>
-        <h2 class="section-title">About Me</h2>
-      </div>
-
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            I'm a full-stack developer who builds custom software for
-            traditional businesses—the kind that keep the world running but
-            often get overlooked by tech. My goal is to make quality technology
-            accessible to business owners who shouldn't need a CS degree to get
-            good tools.
-          </p>
-
-          <p>
-            Outside of code, I'm a ghostwriter for pop and EDM artists under
-            <a
-              href="https://open.spotify.com/artist/3x6K65pMW3Ei35TXKC03rL?si=7d1YuGJORj-4ZT90qD1vUQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Dare County</a
-            >. I also run
-            <a
-              href="https://www.youtube.com/@BeautifulsDream"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Beautiful's Dream</a
-            >, a YouTube channel making wholesome, slightly-edgy educational
-            content for kids.
-          </p>
-
-          <p>
-            I believe good software should be like a good mechanic: reliable,
-            honest, and doesn't make you feel stupid for asking questions.
-          </p>
+        <div class="skill-group">
+          <h4>Data & Architecture</h4>
+          <ul class="tech-stack">
+            <li>PostgreSQL</li>
+            <li>Raw SQL</li>
+            <li>SQLAlchemy</li>
+            <li>Pydantic</li>
+            <li>WebSockets</li>
+            <li>State Machines</li>
+          </ul>
         </div>
 
-        <div class="skills-grid">
-          <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">FastAPI</div></div>
-          <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Pydantic</div></div>
-          <div class="skill-item"><div class="skill-icon">🗄️</div><div class="skill-name">SQLAlchemy</div></div>
-          <div class="skill-item"><div class="skill-icon">🍬</div><div class="skill-name">Marshmallow</div></div>
-          <div class="skill-item"><div class="skill-icon">🐘</div><div class="skill-name">PostgreSQL</div></div>
-          <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">Alembic</div></div>
-          <div class="skill-item"><div class="skill-icon">⚛️</div><div class="skill-name">React</div></div>
-          <div class="skill-item"><div class="skill-icon">🚀</div><div class="skill-name">Vite</div></div>
-          <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
-          <div class="skill-item"><div class="skill-icon">🌶️</div><div class="skill-name">Flask</div></div>
-          <div class="skill-item"><div class="skill-icon">📜</div><div class="skill-name">JavaScript</div></div>
-          <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">Pylance</div></div>
+        <div class="skill-group">
+          <h4>Deployment</h4>
+          <ul class="tech-stack">
+            <li>Railway</li>
+            <li>Netlify</li>
+          </ul>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <div class="section-header" style="text-align: center">
-        <div class="section-tag">Get in Touch</div>
-        <h2 class="section-title">Let's Work Together</h2>
-      </div>
-
-      <div class="contact-content">
-        <p>
-          Got a business that needs better tools? Let's talk about what would
-          actually help.
-        </p>
-
-        <div class="contact-links">
-          <a
-            href="/cdn-cgi/l/email-protection#e88d8589818482879b808c818b838d9aa88f85898184c68b8785"
-            class="contact-link"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Email
-          </a>
-
+      <h2>Contact</h2>
+      <ul class="contact-links">
+        <li><a href="mailto:emailjoshdicker@gmail.com">Email</a></li>
+        <li>
           <a
             href="https://github.com/josdic1"
             target="_blank"
             rel="noopener noreferrer"
-            class="contact-link"
+            >GitHub</a
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg>
-            GitHub
-          </a>
-
+        </li>
+        <li>
           <a
             href="https://linkedin.com/in/joshdicker"
             target="_blank"
             rel="noopener noreferrer"
-            class="contact-link"
+            >LinkedIn</a
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-              <rect x="2" y="9" width="4" height="12" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-            LinkedIn
-          </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
-    <footer>
-      <p>© 2026 Josh Dicker. Built to last.</p>
-    </footer>
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>
