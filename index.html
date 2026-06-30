@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Portfolio | Josh Dicker</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -32,11 +33,15 @@
           Roboto,
           "Helvetica Neue",
           sans-serif;
-        background-color: var(--bg-color);
+        background-color: #f1eadc;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+        background-size: 24px 24px;
         color: var(--text-main);
         line-height: 1.5;
         padding: 4rem 2rem;
-        max-width: 900px;
+        max-width: 1280px;
         margin: 0 auto;
       }
 
@@ -126,8 +131,9 @@
       /* Grid */
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 2rem;
+        align-items: stretch;
       }
 
       /* Cards */
@@ -135,7 +141,7 @@
         background-color: var(--card-bg);
         border: var(--border-heavy);
         box-shadow: var(--shadow-hard);
-        padding: 2rem;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
         transition: all 0.15s ease-out;
@@ -156,7 +162,7 @@
       }
 
       .card h3 {
-        font-size: 1.75rem;
+        font-size: 1.65rem;
         margin-bottom: 0;
       }
 
@@ -172,7 +178,7 @@
       }
 
       .card p.description {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
         flex-grow: 1;
@@ -304,7 +310,16 @@
       }
 
       /* Mobile Adjustments */
-      @media (max-width: 600px) {
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 650px) {
+        body {
+          padding: 2rem 1rem;
+        }
         h1 {
           font-size: 2.5rem;
         }
@@ -427,6 +442,46 @@
 
         <div class="card">
           <div class="card-header">
+            <h3>Prediculous</h3>
+            <div class="card-icon"><i data-lucide="bot"></i></div>
+          </div>
+          <p class="description">
+            Agentic prediction-market research platform for scanning markets,
+            tracking holds, creating signal edges, reviewing AI picks, and paper
+            trading with bankroll tracking.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">Node</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">AI Agent</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
+            </div>
+            <div class="card-links">
+              <a
+                href="https://prediculous.netlify.app/"
+                class="card-action try-it"
+                target="_blank"
+                rel="noopener noreferrer"
+                >TRY IT ↗</a
+              >
+              <a
+                href="https://github.com/josdic1/prediculous"
+                class="card-action"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
             <h3>TakeVault</h3>
             <div class="card-icon"><i data-lucide="archive"></i></div>
           </div>
@@ -468,7 +523,7 @@
         <div class="card">
           <div class="card-header">
             <h3>Bagger</h3>
-            <div class="card-icon"><i data-lucide="briefcase"></i></div>
+            <div class="card-icon"><i data-lucide="book-marked"></i></div>
           </div>
           <p class="description">
             Developer-focused code snippet manager utilizing a highly
@@ -496,6 +551,46 @@
               >
               <a
                 href="https://github.com/josdic1/bagger"
+                class="card-action"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Butcher Shop</h3>
+            <div class="card-icon"><i data-lucide="beef"></i></div>
+          </div>
+          <p class="description">
+            Butcher shop ordering and operations platform with counter ordering,
+            category-based product entry, live order streams, dashboard
+            analytics, and reporting for daily shop flow.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">POS</span>
+              <span class="card-tag">Orders</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">Express</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
+            </div>
+            <div class="card-links">
+              <a
+                href="https://maplekosher.netlify.app/"
+                class="card-action try-it"
+                target="_blank"
+                rel="noopener noreferrer"
+                >TRY IT ↗</a
+              >
+              <a
+                href="https://github.com/josdic1/groundup"
                 class="card-action"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -580,6 +675,46 @@
             </div>
           </div>
         </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>SoMama</h3>
+            <div class="card-icon"><i data-lucide="croissant"></i></div>
+          </div>
+          <p class="description">
+            Local bakery operations and customer management system for weekly
+            orders, customer records, status tracking, pickup flow, and simple
+            small-business admin workflows.
+          </p>
+          <div class="card-footer">
+            <div class="card-tags">
+              <span class="card-tag">React</span>
+              <span class="card-tag">TypeScript</span>
+              <span class="card-tag">Orders</span>
+              <span class="card-tag">Customers</span>
+              <span class="card-tag">PostgreSQL</span>
+              <span class="card-tag">Dashboard</span>
+              <span class="card-tag">Railway</span>
+              <span class="card-tag">Netlify</span>
+            </div>
+            <div class="card-links">
+              <a
+                href="https://somama.netlify.app/"
+                class="card-action try-it"
+                target="_blank"
+                rel="noopener noreferrer"
+                >TRY IT ↗</a
+              >
+              <a
+                href="https://github.com/josdic1/somama"
+                class="card-action"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -617,6 +752,9 @@
             <li>Pydantic</li>
             <li>WebSockets</li>
             <li>State Machines</li>
+            <li>Agent Workflows</li>
+            <li>POS Systems</li>
+            <li>Order Management</li>
           </ul>
         </div>
 
