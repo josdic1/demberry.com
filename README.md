@@ -1,32 +1,37 @@
 # demberry.com
 
-Personal portfolio site for Josh Dicker - Full-Stack Developer.
+Personal portfolio for Josh Dicker, a full-stack developer building practical software for real-world organizations and businesses.
 
 ![Portfolio Screenshot](screenshot.png)
 
 ## Live Site
 
-**[→ demberry.com](https://josdic1.github.io/demberry.com/)**
+**[View the portfolio →](https://josdic1.github.io/demberry.com/)**
 
 ## About
 
-Portfolio showcasing custom software built for traditional businesses—mechanics, laundromats, restaurants, car dealerships. Practical tools, explained in plain English, built to last.
+I design and build focused, full-stack applications for organizations underserved by generic software—from schools, camps, and private clubs to bars, laundromats, bakeries, and retail operations.
+
+No bloated dashboards or unnecessary features—just reliable tools built around how people actually work.
 
 ## Featured Projects
 
-- **SlateSnap** - Photo documentation for roofing crews
-- **aTrakk** - Music project tracking for artists
-- **CheatCode** - Personal code snippet manager with dev tools
-- **Bookafella** - Private club reservation system
-- **LaundroSpin** - Smart laundromat management
+- **Bussin** — No-signup, real-time school and camp bus tracking with live GPS, arrival estimates, personalized leave timing, push notifications, and driver updates.
+- **Anchor Lake** — Role-based reservation, point-of-sale, kitchen operations, seating, and reporting platform for private clubs.
+- **BarQueue** — Dive-bar point-of-sale and intelligent queue management for pool and shuffleboard tables.
+- **TipsyGenius** — Real-time trivia platform with host controls, public displays, mobile team participation, and automated grading.
+- **LaundroSpin** — Smart laundromat management with live machine tracking, buffer pricing, and overstay penalties.
+- **SoMama** — Bakery operations system for weekly orders, customer records, pickup flow, and administrative workflows.
 
-## Full-Stack Engineer
-My portfolio page was built with:
+## Built With
+
 - HTML
 - CSS
 - Vanilla JavaScript
+- Lucide Icons
 
 ## Contact
 
 - [GitHub](https://github.com/josdic1)
 - [LinkedIn](https://linkedin.com/in/joshdicker)
+- [Email](mailto:emailjoshdicker@gmail.com)
