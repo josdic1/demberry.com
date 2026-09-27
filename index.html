@@ -180,6 +180,81 @@
   }
 
   @media (max-width: 1360px) { .grid.dense .name { font-size: 14px; } .grid.dense .desc { font-size: 12px; } }
+
+  /* v2: compact heading, two chip rows (status, industry), sort toggle, cards that never clip. */
+  .page { height: auto; min-height: 100dvh; grid-template-rows: auto auto auto 1fr; gap: clamp(10px, 1.6vh, 18px); padding-top: clamp(12px, 2vh, 22px); padding-bottom: clamp(14px, 2.2vh, 24px); }
+  .id { padding: 8px 10px 8px 8px; }
+  .mark { width: 38px; height: 38px; border-radius: 12px; }
+  .head { align-items: center; }
+  .title { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .title h1 { font-size: clamp(24px, 3.2vh, 32px); }
+  .title p { margin: 0; font-size: 13.5px; color: var(--gray); }
+  .tagline { color: var(--ink); font-weight: 600; }
+  .tools { display: flex; align-items: center; gap: 12px; }
+  .seg { display: inline-flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; box-shadow: var(--inset-sm); }
+  .seg span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); padding: 0 8px 0 10px; }
+  .seg button { border: 0; background: transparent; border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--gray); cursor: pointer; transition: box-shadow .18s ease, color .18s ease; }
+  .seg button[aria-pressed="true"] { background: var(--clay); color: var(--ink); box-shadow: 3px 3px 7px var(--sh), -3px -3px 7px var(--hi); }
+  .clear { margin-left: auto; flex: none; border: 0; background: transparent; cursor: pointer; font-size: 12px; font-weight: 600; color: #2f6b56; padding: 6px 4px; visibility: hidden; opacity: 0; transition: opacity .18s ease; }
+  .clear.on { visibility: visible; opacity: 1; }
+  .clear:hover { text-decoration: underline; }
+
+  .filters { display: grid; gap: 8px; }
+  .row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .lbl { flex: none; width: 70px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); }
+  .chips { display: flex; gap: 9px; flex-wrap: wrap; min-width: 0; }
+  .chip {
+    border: 0; background: var(--clay); cursor: pointer; border-radius: 999px; padding: 6px 10px 6px 11px;
+    display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink);
+    box-shadow: 3px 3px 8px var(--sh), -3px -3px 8px var(--hi); transition: box-shadow .18s ease, color .18s ease;
+  }
+  .chip b { font-size: 11px; font-weight: 600; color: var(--gray); }
+  .chip .ico { width: 16px; height: 16px; color: var(--gray); }
+  .chip .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .chip:hover { box-shadow: 4px 4px 10px var(--sh), -4px -4px 10px var(--hi); }
+  .chip[aria-pressed="true"] { box-shadow: var(--inset); }
+  .chip[aria-pressed="true"] .ico { color: var(--ink); }
+  .chip[aria-pressed="true"] b { box-shadow: none; color: var(--ink); }
+
+  /* Cards: rows size to their content, so nothing is ever cut off. */
+  .grid { grid-auto-rows: minmax(min-content, 1fr); align-content: stretch; }
+  .grid > li { display: flex; min-height: 0; }
+  .card, .grid.dense .card { flex: 1; height: auto; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto 1fr auto; row-gap: 6px; }
+  .nm { display: grid; gap: 3px; align-self: center; min-width: 0; }
+  .grid.dense .logo, .logo { grid-row: 1; }
+  .grid.dense .card { padding: 11px 12px 10px; column-gap: 10px; }
+  .grid { gap: clamp(10px, 1.5vh, 16px); }
+  .grid.dense .logo { grid-row: 1; width: 34px; height: 34px; }
+  .grid.dense .name { font-size: 14.5px; line-height: 1.15; white-space: normal; display: block; overflow: visible; -webkit-line-clamp: unset; }
+  .kind { display: flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+  .kind .ico { width: 13px; height: 13px; flex: none; }
+  .desc, .grid.dense .desc { grid-column: 1 / -1; display: block; overflow: visible; -webkit-line-clamp: unset; font-size: 12.5px; line-height: 1.35; }
+  .foot { align-self: end; margin-top: 0; }
+  .grid.dense .tag { padding: 4px 8px; font-size: 9.5px; }
+  @media (max-width: 1360px) { .grid.dense .name { font-size: 13.5px; } .grid.dense .desc { font-size: 12px; } .chip { padding: 6px 10px; font-size: 12px; } }
+
+  /* Narrow screens: chip rows scroll sideways instead of stacking. */
+  @media (max-width: 1100px) {
+    .row { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; width: 100%; padding: 4px 4px 10px; scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: none; }
+    .clear { margin-left: 0; }
+    .clear:not(.on) { display: none; }
+    .head { align-items: flex-start; }
+  }
+  /* Short laptop screens: drop the subline and tighten so it still fits one screen. */
+  @media (max-height: 820px) and (min-width: 1101px) {
+    .title p { display: none; }
+    .page { gap: 10px; padding-top: 10px; padding-bottom: 12px; }
+    .filters { gap: 6px; }
+    .chip { padding: 5px 10px; }
+    .grid { gap: 10px; }
+    .grid.dense .card { padding: 9px 11px 8px; row-gap: 4px; }
+    .grid.dense .logo { width: 30px; height: 30px; }
+    .desc, .grid.dense .desc { font-size: 11.5px; line-height: 1.3; }
+  }
+  .grid.dense .kind { letter-spacing: 0.06em; }
 </style>
 </head>
 <body>
@@ -198,15 +273,23 @@
   </nav>
 
   <header class="head">
-    <div>
-      <p class="eyebrow">Software built around the work</p>
+    <div class="title">
       <h1>App Gallery&trade;</h1>
-      <p id="sub"></p>
+      <p><span class="tagline">Software built around the work.</span> <span id="sub"></span></p>
     </div>
-    <span class="badge">South Orange, NJ</span>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Sort cards">
+        <span>Sort</span>
+        <button type="button" data-sort="status" aria-pressed="true">Status</button>
+        <button type="button" data-sort="ind" aria-pressed="false">Industry</button>
+      </div>
+    </div>
   </header>
 
-  <nav class="statuses" id="statuses" aria-label="Filter by status"></nav>
+  <section class="filters" aria-label="Filter apps">
+    <div class="row"><span class="lbl">Status</span><div class="chips" id="statusChips"></div><button id="clear" class="clear" type="button"><span></span></button></div>
+    <div class="row"><span class="lbl">Industry</span><div class="chips" id="indChips"></div></div>
+  </section>
 
   <ul class="grid" id="grid"></ul>
 </main>
@@ -255,35 +338,48 @@
     { key: "retired",  label: "Retired" },
   ];
 
+  // Industry groups, in the order the filter shows them. Icons are 24px line drawings.
+  const INDUSTRIES = [
+    { key: "clubs",   label: "Clubs & Camps",   icon: '<path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/>' },
+    { key: "food",    label: "Food & Drink",    icon: '<path d="M4 3v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3"/><path d="M7 3v18"/><path d="M20 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2v6"/>' },
+    { key: "transit", label: "Transit",  icon: '<rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 10h16"/><path d="M7 21v-4M17 21v-4"/>' },
+    { key: "trades",  label: "Trades",          icon: '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L3 18l3 3 6.2-6.2a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.6-.5-.5-2.6z"/>' },
+    { key: "health",  label: "Health",      icon: '<path d="M3 12h4l2-5 4 10 2-5h6"/>' },
+    { key: "money",   label: "Finance",         icon: '<circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.6-1-1.7-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.6-3-1.5M12 5.5V8M12 16v2.5"/>' },
+    { key: "retail",  label: "Retail",   icon: '<path d="M3 9l2-5h14l2 5"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/><path d="M10 20v-5h4v5"/>' },
+    { key: "games",   label: "Games",  icon: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4"/><circle cx="16" cy="11" r=".6"/><circle cx="18" cy="13" r=".6"/>' },
+    { key: "tools",   label: "My Tools",    icon: '<rect x="3" y="4" width="18" height="15" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/>' },
+  ];
+
   const APPS = [
-    { name: "Padder",             status: "inuse",    slug: "padder",            desc: "One giant notepad that tells you if you already saved it" },
-    { name: "Anchor Lake",        status: "inuse",    slug: "anchor-lake",       desc: "Private club bookings, POS and kitchen, by household" },
-    { name: "Stasher",            status: "inuse",    slug: "stasher",           desc: "Every command I can't memorize, one F2 away" },
-    { name: "Bussin",             status: "inuse",    slug: "bussin",            desc: "Pre-K bus tracker with a live parent ETA" },
-    { name: "Tipsy Genius",       status: "dev",      slug: "tipsy-genius",      desc: "Bar trivia: host laptop, TV and phones on one live stream" },
-    { name: "Vizow",              status: "dev",      slug: "vizow",             desc: "Contractor jobs as transit maps, Visual of Work" },
-    { name: "Sterling Spend",     status: "dev",      slug: "sterling-spend",    desc: "Receipts in, reimbursements out" },
-    { name: "Teerific",           status: "dev",      slug: "teerific",          desc: "Live golf round tracker with a home-by countdown" },
-        { name: "IRVING+",            status: "dev",      slug: "irving",            desc: "Doctor dictation turned into SOAP notes" },
-    { name: "Appaponi",           status: "awaiting", slug: "appaponi",          desc: "Camp weekends without paper tickets" },
-    { name: "Lazy Jane's Diner",  status: "awaiting", slug: "lazy-janes-diner",  desc: "Diner POS built on a food classification system" },
-    { name: "Lazy Jane's Tavern", status: "awaiting", slug: "lazy-janes-tavern", desc: "Bar tabs, kitchen chits and the game queue" },
-    { name: "Malka",              status: "awaiting", slug: "malka",             desc: "One POS for a butcher who was running three" },
-    { name: "Somama",             status: "awaiting", slug: "somama",            desc: "White-label storefront for a cookie baker" },
-    { name: "Prediculous",        status: "awaiting", slug: "prediculous",       desc: "AI that learns my betting patterns" },
-    { name: "Carpliance",         status: "shelved",  slug: "carpliance",        desc: "Compliant lease and buy ads for car dealers" },
-    { name: "LaundroSpin",        status: "shelved",  slug: "laundrospin",       desc: "Laundromat wall board that sells buffer time" },
-    { name: "Pong Forest",        status: "shelved",  slug: "pong-forest",       desc: "Real-time pong, join by room code" },
-    { name: "NailedIt",           status: "replaced", slug: "nailedit",          desc: "Contractor booking that cuts the back-and-forth" },
-    { name: "Bookafella",         status: "replaced", slug: "bookafella",        desc: "Private club reservations, replaced by Anchor Lake" },
-    { name: "Tagger",             status: "replaced", slug: "tagger",            desc: "Private tags and dupe checks for local files" },
-    { name: "Grabber",            status: "replaced", slug: "grabber",           desc: "Screenshot markup and how-to walkthroughs" },
-    { name: "BusWatch",           status: "retired",  slug: "buswatch",          desc: "Live bus tracker for the daily commute" },
-    { name: "Tsadie",             status: "retired",  slug: "tsadie",            desc: "The first version of the bus tracker" },
-    { name: "Bagger",             status: "retired",  slug: "bagger",            desc: "Palette-driven internal tool, replaced by Stasher" },
-    { name: "Inlet",              status: "retired",  slug: "inlet",             desc: "Job-search tracker that became a mobile resume" },
-    { name: "Atrakk",             status: "retired",  slug: "atrakk",            desc: "Music track manager for my own catalog" },
-    { name: "SlateSnap",          status: "retired",  slug: "slatesnap",         desc: "Photo documentation for roofing crews" },
+    { name: "Padder",             status: "inuse",    ind: "tools",     slug: "padder",            desc: "One giant notepad that tells you if you already saved it" },
+    { name: "Anchor Lake",        status: "inuse",    ind: "clubs",     slug: "anchor-lake",       desc: "Private club bookings, POS and kitchen, by household" },
+    { name: "Stasher",            status: "inuse",    ind: "tools",     slug: "stasher",           desc: "Every command I can't memorize, one F2 away" },
+    { name: "Bussin",             status: "inuse",    ind: "transit",   slug: "bussin",            desc: "Pre-K bus tracker with a live parent ETA" },
+    { name: "Tipsy Genius",       status: "dev",      ind: "games",     slug: "tipsy-genius",      desc: "Bar trivia: host laptop, TV and phones on one live stream" },
+    { name: "Vizow",              status: "dev",      ind: "trades",    slug: "vizow",             desc: "Contractor jobs as transit maps, Visual of Work" },
+    { name: "Sterling Spend",     status: "dev",      ind: "money",     slug: "sterling-spend",    desc: "Receipts in, reimbursements out" },
+    { name: "Teerific",           status: "dev",      ind: "clubs",     slug: "teerific",          desc: "Live golf round tracker with a home-by countdown" },
+        { name: "IRVING+",            status: "dev",      ind: "health",    slug: "irving",            desc: "Doctor dictation turned into SOAP notes" },
+    { name: "Appaponi",           status: "awaiting", ind: "clubs",     slug: "appaponi",          desc: "Camp weekends without paper tickets" },
+    { name: "Lazy Jane's Diner",  status: "awaiting", ind: "food",      slug: "lazy-janes-diner",  desc: "Diner POS built on a food classification system" },
+    { name: "Lazy Jane's Tavern", status: "awaiting", ind: "food",      slug: "lazy-janes-tavern", desc: "Bar tabs, kitchen chits and the game queue" },
+    { name: "Malka",              status: "awaiting", ind: "food",      slug: "malka",             desc: "One POS for a butcher who was running three" },
+    { name: "Somama",             status: "awaiting", ind: "food",      slug: "somama",            desc: "White-label storefront for a cookie baker" },
+    { name: "Prediculous",        status: "awaiting", ind: "money",     slug: "prediculous",       desc: "AI that learns my betting patterns" },
+    { name: "Carpliance",         status: "shelved",  ind: "retail",    slug: "carpliance",        desc: "Compliant lease and buy ads for car dealers" },
+    { name: "LaundroSpin",        status: "shelved",  ind: "retail",    slug: "laundrospin",       desc: "Laundromat wall board that sells buffer time" },
+    { name: "Pong Forest",        status: "shelved",  ind: "games",     slug: "pong-forest",       desc: "Real-time pong, join by room code" },
+    { name: "NailedIt",           status: "replaced", ind: "trades",    slug: "nailedit",          desc: "Contractor booking that cuts the back-and-forth" },
+    { name: "Bookafella",         status: "replaced", ind: "clubs",     slug: "bookafella",        desc: "Private club reservations, replaced by Anchor Lake" },
+    { name: "Tagger",             status: "replaced", ind: "tools",     slug: "tagger",            desc: "Private tags and dupe checks for local files" },
+    { name: "Grabber",            status: "replaced", ind: "tools",     slug: "grabber",           desc: "Screenshot markup and how-to walkthroughs" },
+    { name: "BusWatch",           status: "retired",  ind: "transit",   slug: "buswatch",          desc: "Live bus tracker for the daily commute" },
+    { name: "Tsadie",             status: "retired",  ind: "transit",   slug: "tsadie",            desc: "The first version of the bus tracker" },
+    { name: "Bagger",             status: "retired",  ind: "tools",     slug: "bagger",            desc: "Palette-driven internal tool, replaced by Stasher" },
+    { name: "Inlet",              status: "retired",  ind: "tools",     slug: "inlet",             desc: "Job-search tracker that became a mobile resume" },
+    { name: "Atrakk",             status: "retired",  ind: "tools",     slug: "atrakk",            desc: "Music track manager for my own catalog" },
+    { name: "SlateSnap",          status: "retired",  ind: "trades",    slug: "slatesnap",         desc: "Photo documentation for roofing crews" },
   ];
 
 
@@ -291,42 +387,82 @@
   // ---------------------------------------------------------------------------
 
   const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-  const order = Object.fromEntries(STATUSES.map((s, i) => [s.key, i]));
+  const svg = (paths, cls = "") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+  const sOrder = Object.fromEntries(STATUSES.map((s, i) => [s.key, i]));
+  const iOrder = Object.fromEntries(INDUSTRIES.map((s, i) => [s.key, i]));
   const labelOf = Object.fromEntries(STATUSES.map((s) => [s.key, s.label]));
-  const apps = [...APPS].sort((a, b) => order[a.status] - order[b.status]);
-  const total = apps.length;
-  const live = apps.filter((a) => a.status === "inuse" || a.status === "dev").length;
+  const ind = Object.fromEntries(INDUSTRIES.map((s) => [s.key, s]));
+  const total = APPS.length;
+  const live = APPS.filter((a) => a.status === "inuse" || a.status === "dev").length;
 
   document.getElementById("sub").textContent =
     `${total} apps I have built, and where each one stands. ${live} still running. Every card opens a working demo.`;
 
-  const statuses = STATUSES.map((s) => ({ ...s, count: apps.filter((a) => a.status === s.key).length })).filter((s) => s.count);
-  document.getElementById("statuses").innerHTML = statuses
-    .map((s) => `<button class="status" type="button" data-key="${s.key}" aria-pressed="false"><b>${s.count}</b><span>${s.label}</span><i class="dot-${s.key}" aria-hidden="true"></i></button>`)
-    .join("");
+  // Filter chips: status row and industry row, each with live counts.
+  const chip = (group, key, inner, count) =>
+    `<button class="chip" type="button" data-group="${group}" data-key="${key}" aria-pressed="false">${inner}<b>${count}</b></button>`;
+  document.getElementById("statusChips").innerHTML = STATUSES
+    .map((s) => ({ ...s, n: APPS.filter((a) => a.status === s.key).length })).filter((s) => s.n)
+    .map((s) => chip("status", s.key, `<i class="dot dot-${s.key}"></i><span>${s.label}</span>`, s.n)).join("");
+  document.getElementById("indChips").innerHTML = INDUSTRIES
+    .map((s) => ({ ...s, n: APPS.filter((a) => a.ind === s.key).length })).filter((s) => s.n)
+    .map((s) => chip("ind", s.key, `${svg(s.icon, "ico")}<span>${s.label}</span>`, s.n)).join("");
 
   // Columns picked so every card fits on one screen.
   const cols = total <= 12 ? 4 : total <= 20 ? 5 : total <= 24 ? 6 : total <= 35 ? 7 : 8;
   const grid = document.getElementById("grid");
   grid.style.setProperty("--cols", cols);
   grid.classList.toggle("dense", cols >= 7);
-  grid.innerHTML = apps.map((a, i) => `
-    <li>
-      <a class="card" href="${DEMO_BASE}${a.slug}/" data-status="${a.status}">
-        <span class="logo">${LOGOS[a.slug] ? `<img src="${LOGOS[a.slug]}" alt="">` : ""}</span>
-        <span class="name">${esc(a.name)}</span>
-        <span class="desc">${esc(a.desc)}</span>
-        <span class="foot"><span class="tag s-${a.status}">${labelOf[a.status]}</span><span class="num">${String(i + 1).padStart(2, "0")}</span></span>
-      </a>
-    </li>`).join("");
 
-  // Tap a status to spotlight it; tap again to clear.
-  let active = null;
-  document.querySelectorAll(".status").forEach((btn) => btn.addEventListener("click", () => {
-    active = active === btn.dataset.key ? null : btn.dataset.key;
-    document.querySelectorAll(".status").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.key === active)));
-    document.querySelectorAll(".card").forEach((c) => c.classList.toggle("dim", active !== null && c.dataset.status !== active));
-  }));
+  const state = { status: null, ind: null, sort: "status" };
+
+  function render() {
+    const by = state.sort === "status"
+      ? (a, b) => sOrder[a.status] - sOrder[b.status] || iOrder[a.ind] - iOrder[b.ind]
+      : (a, b) => iOrder[a.ind] - iOrder[b.ind] || sOrder[a.status] - sOrder[b.status];
+    // Matches float to the front, so a filter reads at a glance; the rest stay, dimmed.
+    const hit = (a) => (!state.status || a.status === state.status) && (!state.ind || a.ind === state.ind);
+    const apps = [...APPS].sort((a, b) => hit(b) - hit(a) || by(a, b));
+    grid.innerHTML = apps.map((a, i) => `
+      <li>
+        <a class="card" href="${DEMO_BASE}${a.slug}/" data-status="${a.status}" data-ind="${a.ind}" title="${esc(a.name)}: ${esc(a.desc)}">
+          <span class="logo">${LOGOS[a.slug] ? `<img src="${LOGOS[a.slug]}" alt="">` : ""}</span>
+          <span class="nm"><span class="name">${esc(a.name)}</span><span class="kind">${svg(ind[a.ind].icon, "ico")}${ind[a.ind].label}</span></span>
+          <span class="desc">${esc(a.desc)}</span>
+          <span class="foot"><span class="tag s-${a.status}">${labelOf[a.status]}</span><span class="num">${String(i + 1).padStart(2, "0")}</span></span>
+        </a>
+      </li>`).join("");
+    applyFilter();
+  }
+
+  function applyFilter() {
+    document.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", String(state[b.dataset.group] === b.dataset.key)));
+    document.querySelectorAll(".card").forEach((c) => {
+      const hit = (!state.status || c.dataset.status === state.status) && (!state.ind || c.dataset.ind === state.ind);
+      c.classList.toggle("dim", !hit);
+    });
+    const any = state.status || state.ind;
+    const n = document.querySelectorAll(".card:not(.dim)").length;
+    const clear = document.getElementById("clear");
+    clear.classList.toggle("on", Boolean(any));
+    clear.querySelector("span").textContent = `Showing ${n} of ${total}. Clear`;
+  }
+
+  // Tap a chip to spotlight it; tap again to clear. Status and industry combine.
+  document.addEventListener("click", (e) => {
+    const c = e.target.closest(".chip");
+    if (c) { state[c.dataset.group] = state[c.dataset.group] === c.dataset.key ? null : c.dataset.key; render(); return; }
+    const s = e.target.closest("[data-sort]");
+    if (s) {
+      state.sort = s.dataset.sort;
+      document.querySelectorAll("[data-sort]").forEach((b) => b.setAttribute("aria-pressed", String(b === s)));
+      render();
+      return;
+    }
+    if (e.target.closest("#clear")) { state.status = null; state.ind = null; render(); }
+  });
+
+  render();
 
 
   // About dialog: opens from the name or the About button, closes on Esc, the X or a backdrop click.
